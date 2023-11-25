@@ -35,31 +35,32 @@ class _MovieListWidgetState extends State<MovieListWidget> {
         shadowColor: Colors.white,
         centerTitle: true,
         actions: [
-          Container(
-            height: height * 0.08,
-            width: width * 0.2,
-            padding: const EdgeInsets.all(5),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                SizedBox(
-                  height: height * 0.005,
-                ),
-                InkWell(
-                  onTap: () {
-                    Get.toNamed(RoutesName.favoriteView);
-                  },
-                  child: const Icon(
+          InkWell(
+            onTap: () {
+              Get.toNamed(RoutesName.favoriteView);
+            },
+            child: Container(
+              height: height * 0.08,
+              width: width * 0.2,
+              padding: const EdgeInsets.all(5),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  SizedBox(
+                    height: height * 0.005,
+                  ),
+                  const Icon(
                     Icons.favorite,
+                    size: 20,
                     color: Colors.red,
                   ),
-                ),
-                const Divider(
-                  color: Colors.red,
-                  indent: 20,
-                  endIndent: 20,
-                )
-              ],
+                  const Divider(
+                    color: Colors.red,
+                    indent: 23,
+                    endIndent: 23,
+                  )
+                ],
+              ),
             ),
           ),
         ],
