@@ -7,14 +7,14 @@ import 'package:movie_moth/view/favorite/component/remove_button.dart';
 import 'package:movie_moth/view_model/controller/home_controller.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
-class FavoriteView extends StatefulWidget {
-  const FavoriteView({super.key});
+class FavoriteMoviesScreen extends StatefulWidget {
+  const FavoriteMoviesScreen({super.key});
 
   @override
-  State<FavoriteView> createState() => _FavoriteViewState();
+  State<FavoriteMoviesScreen> createState() => _FavoriteMoviesScreenState();
 }
 
-class _FavoriteViewState extends State<FavoriteView> {
+class _FavoriteMoviesScreenState extends State<FavoriteMoviesScreen> {
   final HomeController homeController = Get.put(HomeController());
 
   @override
