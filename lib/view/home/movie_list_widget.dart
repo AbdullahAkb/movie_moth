@@ -26,10 +26,19 @@ class _MovieListWidgetState extends State<MovieListWidget> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text(
-          'Movie Moth',
-          style: GoogleFonts.raleway(
-              color: Colors.white, fontWeight: FontWeight.bold),
+        toolbarHeight: height * 0.1,
+        title: Column(
+          children: [
+            Image.asset(
+              "assets/icon/moth.png",
+              height: height * 0.04,
+            ),
+            Text(
+              'Movie Moth',
+              style: GoogleFonts.raleway(
+                  color: Colors.white, fontWeight: FontWeight.bold),
+            ),
+          ],
         ),
         backgroundColor: Colors.black,
         shadowColor: Colors.white,
@@ -131,7 +140,16 @@ class _MovieListWidgetState extends State<MovieListWidget> {
                                       children: [
                                         Row(
                                           children: [
-                                            ImageWidget(movie: movie),
+                                            InkWell(
+                                              onTap: () {
+                                                Get.toNamed(
+                                                    RoutesName.detailView,
+                                                    arguments: movie);
+                                              },
+                                              child: ImageWidget(
+                                                movie: movie,
+                                              ),
+                                            ),
                                             SizedBox(
                                               width: width * 0.05,
                                             ),

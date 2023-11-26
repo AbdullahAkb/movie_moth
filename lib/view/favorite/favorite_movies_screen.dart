@@ -6,6 +6,7 @@ import 'package:movie_moth/view/favorite/component/image_widget.dart';
 import 'package:movie_moth/view/favorite/component/remove_button.dart';
 import 'package:movie_moth/view_model/controller/home_controller.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:lottie/lottie.dart';
 
 class FavoriteMoviesScreen extends StatefulWidget {
   const FavoriteMoviesScreen({super.key});
@@ -46,112 +47,152 @@ class _FavoriteMoviesScreenState extends State<FavoriteMoviesScreen> {
           centerTitle: true,
         ),
         body: Obx(() {
-          return Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                colors: [
-                  // Color.fromARGB(255, 178, 10, 44),
-                  Color.fromARGB(255, 255, 17, 0),
-                  Color.fromARGB(255, 255, 251, 213),
-                ],
-              ),
-            ),
-            child: AnimationLimiter(
-              child: ListView.builder(
-                itemCount: homeController.favorites.length,
-                itemBuilder: (context, index) {
-                  Movie movie = homeController.favorites[index];
-                  return AnimationConfiguration.staggeredList(
-                    position: index,
-                    duration: const Duration(milliseconds: 850),
-                    child: SlideAnimation(
-                      verticalOffset: 50.0,
-                      child: FadeInAnimation(
-                        child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Column(
-                            children: [
-                              ImageWidget(
-                                movie: movie,
-                              ),
-                              SizedBox(
-                                height: height * 0.01,
-                              ),
-                              Text(
-                                movie.title,
-                                style: GoogleFonts.lato(
-                                  color: const Color.fromARGB(255, 69, 17, 13),
-                                  fontSize: 27,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                              Divider(
-                                color: const Color.fromARGB(255, 178, 10, 44),
-                                height: height * 0.02,
-                                indent: width * 0.3,
-                                endIndent: width * 0.3,
-                              ),
-                              SizedBox(
-                                height: height * 0.01,
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    "Overview",
-                                    style: GoogleFonts.lato(
-                                        fontSize: 12, color: Colors.red),
-                                  ),
-                                ],
-                              ),
-                              Center(
-                                child: SizedBox(
-                                  child: Text(
-                                    movie.overview,
-                                    maxLines: 5,
-                                    textAlign: TextAlign.center,
-                                    style: GoogleFonts.lato(
-                                        fontSize: 15, color: Colors.black),
-                                  ),
-                                ),
-                              ),
-                              SizedBox(
-                                height: height * 0.01,
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    "Release Date:",
-                                    style: GoogleFonts.lato(
-                                        fontSize: 12, color: Colors.deepPurple),
-                                  ),
-                                  Text(
-                                    "  ${movie.releaseDate}",
-                                    style: GoogleFonts.lato(
-                                        fontSize: 15, color: Colors.black),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: height * 0.01,
-                              ),
-                              RemoveButton(
-                                onPress: () {
-                                  homeController.removeFavorite(movie);
-                                },
-                              )
-                            ],
+          return homeController.favorites.isEmpty
+              ? Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Lottie.asset(
+                        'assets/icon/heart.json',
+                        animate: true,
+                        repeat: true,
+                      ),
+                      SizedBox(height: 16),
+                      Text(
+                        'Your favorite movies list is empty.',
+                        style:
+                            GoogleFonts.lato(fontSize: 15, color: Colors.black),
+                      ),
+                      SizedBox(height: height * 0.02),
+                      ElevatedButton(
+                        onPressed: () {
+                          // Navigate to the MovieListWidget or any screen where users can add movies to favorites
+                          Get.back(); // Close the current screen
+                        },
+                        child: Text(
+                          'Discover Movies',
+                          style: GoogleFonts.lato(
+                            fontSize: 15,
                           ),
                         ),
                       ),
+                    ],
+                  ),
+                )
+              : Container(
+                  decoration: const BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      colors: [
+                        // Color.fromARGB(255, 178, 10, 44),
+                        Color.fromARGB(255, 255, 17, 0),
+                        Color.fromARGB(255, 255, 251, 213),
+                      ],
                     ),
-                  );
-                },
-              ),
-            ),
-          );
+                  ),
+                  child: AnimationLimiter(
+                    child: ListView.builder(
+                      itemCount: homeController.favorites.length,
+                      itemBuilder: (context, index) {
+                        Movie movie = homeController.favorites[index];
+                        return AnimationConfiguration.staggeredList(
+                          position: index,
+                          duration: const Duration(milliseconds: 850),
+                          child: SlideAnimation(
+                            verticalOffset: 50.0,
+                            child: FadeInAnimation(
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Column(
+                                  children: [
+                                    ImageWidget(
+                                      movie: movie,
+                                    ),
+                                    SizedBox(
+                                      height: height * 0.01,
+                                    ),
+                                    Text(
+                                      movie.title,
+                                      style: GoogleFonts.lato(
+                                        color: const Color.fromARGB(
+                                            255, 69, 17, 13),
+                                        fontSize: 27,
+                                        fontWeight: FontWeight.w700,
+                                      ),
+                                    ),
+                                    Divider(
+                                      color: const Color.fromARGB(
+                                          255, 178, 10, 44),
+                                      height: height * 0.02,
+                                      indent: width * 0.3,
+                                      endIndent: width * 0.3,
+                                    ),
+                                    SizedBox(
+                                      height: height * 0.01,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          "Overview",
+                                          style: GoogleFonts.lato(
+                                              fontSize: 12, color: Colors.red),
+                                        ),
+                                      ],
+                                    ),
+                                    Center(
+                                      child: SizedBox(
+                                        child: Text(
+                                          movie.overview,
+                                          maxLines: 5,
+                                          textAlign: TextAlign.center,
+                                          style: GoogleFonts.lato(
+                                              fontSize: 15,
+                                              color: Colors.black),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: height * 0.01,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          "Release Date:",
+                                          style: GoogleFonts.lato(
+                                              fontSize: 12,
+                                              color: Colors.deepPurple),
+                                        ),
+                                        Text(
+                                          "  ${movie.releaseDate}",
+                                          style: GoogleFonts.lato(
+                                              fontSize: 15,
+                                              color: Colors.black),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: height * 0.01,
+                                    ),
+                                    RemoveButton(
+                                      onPress: () {
+                                        homeController.removeFavorite(movie);
+                                      },
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                );
         }));
   }
 }
