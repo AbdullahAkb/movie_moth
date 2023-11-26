@@ -11,6 +11,8 @@ As per requirement:
   - cached_network_image: ^3.3.0
   - shared_preferences: ^2.2.2
   - get: ^4.6.6
+  - lottie: ^2.7.0
+  - badges: ^3.1.2
   - flutter_launcher_icons: ^0.13.1
   - flutter_staggered_animations: ^1.1.1
   - internet_connection_checker: ^1.0.0+1
