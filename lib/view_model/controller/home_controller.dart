@@ -37,13 +37,16 @@ class HomeController extends GetxController {
           margin: EdgeInsets.symmetric(horizontal: 40));
     } else {
       favorites.add(movie);
-      Get.snackbar('Added to Favorites', movie.title,
-          colorText: Colors.white,
-          animationDuration: Duration(milliseconds: 500),
-          margin: EdgeInsets.symmetric(horizontal: 40));
+      Get.snackbar(
+        'Added to Favorites',
+        movie.title,
+        colorText: Colors.white,
+        animationDuration: Duration(milliseconds: 500),
+        margin: EdgeInsets.symmetric(horizontal: 40),
+      );
       _saveFavorites();
-      isFavorite.value = true;
       update();
+      isFavorite.value = true;
     }
 
     // Save favorites to shared_preferences when a new movie is added

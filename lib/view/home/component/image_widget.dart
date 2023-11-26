@@ -13,16 +13,16 @@ class ImageWidget extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return Container(
-      height: height * 0.27,
+      height: height * 0.35,
       width: width * 0.45,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         boxShadow: const [
-           BoxShadow(
-              color: Colors.black38,
-              offset: Offset(0, 3),
-              blurRadius: 2,
-              spreadRadius: 2),
+          BoxShadow(
+              color: Color.fromARGB(54, 245, 245, 245),
+              offset: Offset(1, 3),
+              blurRadius: 6,
+              spreadRadius: 0.5),
         ],
       ),
       child: ClipRRect(

@@ -58,7 +58,7 @@ class _FavoriteMoviesScreenState extends State<FavoriteMoviesScreen> {
                         animate: true,
                         repeat: true,
                       ),
-                      SizedBox(height: 16),
+                      SizedBox(height: height * 0.02),
                       Text(
                         'Your favorite movies list is empty.',
                         style:
@@ -67,8 +67,7 @@ class _FavoriteMoviesScreenState extends State<FavoriteMoviesScreen> {
                       SizedBox(height: height * 0.02),
                       ElevatedButton(
                         onPressed: () {
-                          // Navigate to the MovieListWidget or any screen where users can add movies to favorites
-                          Get.back(); // Close the current screen
+                          Get.back();
                         },
                         child: Text(
                           'Discover Movies',
