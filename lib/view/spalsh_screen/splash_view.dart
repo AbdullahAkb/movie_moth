@@ -24,8 +24,9 @@ class _SplashViewState extends State<SplashView> {
     final height = MediaQuery.of(context).size.height;
     // final width = MediaQuery.of(context).size.width;
     SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(statusBarColor: Colors.white));
+        const SystemUiOverlayStyle(statusBarColor: Colors.black));
     return Scaffold(
+      backgroundColor: Colors.black,
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -35,7 +36,7 @@ class _SplashViewState extends State<SplashView> {
               child: Text("Movie Moth",
                   style: GoogleFonts.raleway(
                     fontSize: 30,
-                    color: Color.fromARGB(255, 69, 17, 13),
+                    color: Colors.white,
                     fontWeight: FontWeight.w700,
                   )),
             ),
